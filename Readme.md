@@ -41,6 +41,19 @@ Each transaction includes:
 
 ---
 
+## 📁 Project Structure
+
+````bash
+wallet-risk-scorer/
+├── main.py                  # Entry-point script to compute risk scores
+├── compound_scorer.py       # Core logic for transaction fetching, feature engineering, and scoring
+├── scorer.py                # Utility functions for min-max normalization
+├── data/
+│   └── wallets.txt          # Input file containing 100 wallet addresses
+├── outputs/
+│   └── risk_scores.csv      # Output file with risk scores for each wallet
+├── README.md                # This file
+
 ## 🧮 Feature Selection
 
 Due to the limitations of the Covalent endpoint and absence of Compound-specific data (e.g., `cTokens`, liquidation history), we focus on:
@@ -70,7 +83,7 @@ risk_score = (
     0.3 * norm_gas_spent +
     0.3 * norm_avg_value
 ) * 1000
-```
+````
 
 ⚖️ Risk Scoring Logic
 The final score is calculated using:
@@ -114,34 +127,6 @@ Integrate Compound V2/V3 Subgraph API for richer protocol-specific data
 Add credit delegation, liquidation history, and collateral factor
 
 Use machine learning models with labeled risk outcomes if data available
-
-🛠️ Setup
-Install dependencies:
-
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Set your Covalent API key in a .env file:
-
-env
-Copy
-Edit
-COVALENT_API_KEY=your_api_key_here
-Run the scorer:
-
-bash
-Copy
-Edit
-python main.py
-📁 Files
-main.py — Fetches data and writes output.csv
-
-scorer.py — Core scoring logic
-
-wallets.txt — Wallet addresses
-
-output.csv — Final scores
 
 📬 Contact
 For questions, contact Kiran Choudhari
